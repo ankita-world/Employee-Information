@@ -1,0 +1,41 @@
+{% extends 'enroll/base.html '%}
+{% block contents %}
+<div class="row">
+    <div class="container text-center col-sm-7 ">
+        <h4 class="text-center alert alert-info">Show Employee Information</h4>
+        {% if employee %}
+            <table class="table table-hover">
+                 <thead>
+                     <tr>
+                         <th>ID</th>
+                         <th>Employee Name</th>
+                         <th>Employee ID</th>
+                         <th>Email</th>
+                         <th>Password</th>
+                         <th>Salary</th>
+                         <th>Action</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                 {% for emp in employee %}
+                     <tr>
+                         <th>{{emp.id}}</th>
+                         <td>{{emp.name}}</td>
+                         <td>{{emp.idNo}}</td>
+                         <td>{{emp.email}}</td>
+                         <td>{{emp.password}}</td>
+                         <td>{{emp.salary}}</td>
+                         <td>
+                            <a href="{% url 'update_data' emp.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="{% url 'delete_data' emp.id %}">Delete</a>
+                         </td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+           </table>
+        {% else %}
+         <h4 class="text-center alert alert-warning">No Records</h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock contents %}
